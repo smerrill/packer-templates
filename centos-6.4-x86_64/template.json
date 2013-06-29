@@ -1,0 +1,82 @@
+{
+  "provisioners": [
+    {
+      "type": "shell",
+      "scripts": [
+        "scripts/base.sh",
+        "scripts/ruby.sh",
+        "scripts/chef.sh",
+        "scripts/puppet.sh",
+        "scripts/vagrant.sh",
+        "scripts/virtualbox.sh",
+        "scripts/cleanup.sh",
+        "scripts/zerodisk.sh"
+      ],
+      "override": {
+        "virtualbox": {
+          "execute_command": "echo 'veewee'|sudo -S sh '{{.Path}}'"
+        },
+        "vmware": {
+          "execute_command": "echo 'veewee'|sudo -S sh '{{.Path}}'"
+        }
+      }
+    }
+  ],
+  "builders": [
+    {
+      "type": "virtualbox",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": 10140,
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+      "iso_md5": "4a5fa01c81cc300f4729136e28ebe600",
+      "iso_url": "http://mirror.umd.edu/centos/6/isos/x86_64/CentOS-6.4-x86_64-minimal.iso",
+      "ssh_username": "veewee",
+      "ssh_password": "veewee",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'veewee'|sudo -S sh 'shutdown.sh'",
+      "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
+      "virtualbox_version_file": ".vbox_version",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "480"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "1"
+        ]
+      ]
+    },
+    {
+      "type": "vmware",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": 10140,
+      "guest_os_type": "RedHat_64",
+      "http_directory": "http",
+      "iso_md5": "4a5fa01c81cc300f4729136e28ebe600",
+      "iso_url": "http://mirror.umd.edu/centos/6/isos/x86_64/CentOS-6.4-x86_64-minimal.iso",
+      "ssh_username": "veewee",
+      "ssh_password": "veewee",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'veewee'|sudo -S sh 'shutdown.sh'",
+      "vmx_data": {
+        "memsize": "480",
+        "numvcpus": "1",
+        "cpuid.coresPerSocket": "1"
+      }
+    }
+  ]
+}
