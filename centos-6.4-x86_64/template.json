@@ -14,10 +14,10 @@
       ],
       "override": {
         "virtualbox": {
-          "execute_command": "echo 'veewee'|sudo -S sh '{{.Path}}'"
+          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
         },
         "vmware": {
-          "execute_command": "echo 'veewee'|sudo -S sh '{{.Path}}'"
+          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
         }
       }
     }
@@ -33,12 +33,12 @@
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "iso_md5": "4a5fa01c81cc300f4729136e28ebe600",
-      "iso_url": "http://mirror.umd.edu/centos/6/isos/x86_64/CentOS-6.4-x86_64-minimal.iso",
-      "ssh_username": "veewee",
-      "ssh_password": "veewee",
+      "iso_url": "http://mirror.rit.edu/centos/6/isos/x86_64/CentOS-6.4-x86_64-minimal.iso",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'veewee'|sudo -S sh 'shutdown.sh'",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
       "vboxmanage": [
@@ -63,20 +63,23 @@
       ],
       "boot_wait": "10s",
       "disk_size": 10140,
-      "guest_os_type": "RedHat_64",
+      "guest_os_type": "rhel6-64",
       "http_directory": "http",
       "iso_md5": "4a5fa01c81cc300f4729136e28ebe600",
-      "iso_url": "http://mirror.umd.edu/centos/6/isos/x86_64/CentOS-6.4-x86_64-minimal.iso",
-      "ssh_username": "veewee",
-      "ssh_password": "veewee",
+      "iso_url": "http://mirror.rit.edu/centos/6/isos/x86_64/CentOS-6.4-x86_64-minimal.iso",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'veewee'|sudo -S sh 'shutdown.sh'",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "vmx_data": {
         "memsize": "480",
         "numvcpus": "1",
         "cpuid.coresPerSocket": "1"
       }
     }
+  ],
+  "post-processors": [
+    "vagrant"
   ]
 }
