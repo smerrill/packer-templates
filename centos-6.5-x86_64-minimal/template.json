@@ -12,9 +12,6 @@
       "override": {
         "virtualbox": {
           "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
-        },
-        "vmware": {
-          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
         }
       }
     }
@@ -29,9 +26,9 @@
       "disk_size": 20480,
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
-      "iso_checksum": "bb9af2aea1344597e11070abe6b1fcd3",
+      "iso_checksum": "0d9dc37b5dd4befa1c440d2174e88a87",
       "iso_checksum_type": "md5",
-      "iso_url": "http://mirror.rit.edu/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-netinstall.iso",
+      "iso_url": "http://mirror.rit.edu/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-minimal.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -53,37 +50,12 @@
           "1"
         ]
       ]
-    },
-    {
-      "type": "vmware",
-      "boot_command": [
-        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
-      ],
-      "boot_wait": "10s",
-      "disk_size": 20480,
-      "guest_os_type": "rhel6-64",
-      "http_directory": "http",
-      "iso_checksum": "bb9af2aea1344597e11070abe6b1fcd3",
-      "iso_checksum_type": "md5",
-      "iso_url": "http://mirror.rit.edu/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-netinstall.iso",
-      "skip_compaction": true,
-      "ssh_username": "vagrant",
-      "ssh_password": "vagrant",
-      "ssh_port": 22,
-      "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
-      "tools_upload_flavor": "linux",
-      "vmx_data": {
-        "memsize": "480",
-        "numvcpus": "1",
-        "cpuid.coresPerSocket": "1"
-      }
     }
   ],
   "post-processors": [
     {
       "type": "vagrant",
-      "output": "centos-6.4-x64-netboot-vbox-4.3.2.box"
+      "output": "centos-6.5-x64-minimal-vbox-4.3.2.box"
     }
   ]
 }
