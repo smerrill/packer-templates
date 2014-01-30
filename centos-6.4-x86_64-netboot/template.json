@@ -10,10 +10,10 @@
         "scripts/zerodisk.sh"
       ],
       "override": {
-        "virtualbox": {
+        "virtualbox-iso": {
           "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
         },
-        "vmware": {
+        "vmware-iso": {
           "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
         }
       }
@@ -21,7 +21,7 @@
   ],
   "builders": [
     {
-      "type": "virtualbox",
+      "type": "virtualbox-iso",
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
@@ -29,9 +29,9 @@
       "disk_size": 20480,
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
-      "iso_checksum": "bb9af2aea1344597e11070abe6b1fcd3",
+      "iso_checksum": "939fd1d87c11ffe7795324438b85adfb",
       "iso_checksum_type": "md5",
-      "iso_url": "http://mirror.rit.edu/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-netinstall.iso",
+      "iso_url": "http://mirrors.rit.edu/centos/6/isos/x86_64/CentOS-6.5-x86_64-netinstall.iso",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -55,7 +55,7 @@
       ]
     },
     {
-      "type": "vmware",
+      "type": "vmware-iso",
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
@@ -63,9 +63,9 @@
       "disk_size": 20480,
       "guest_os_type": "rhel6-64",
       "http_directory": "http",
-      "iso_checksum": "bb9af2aea1344597e11070abe6b1fcd3",
+      "iso_checksum": "939fd1d87c11ffe7795324438b85adfb",
       "iso_checksum_type": "md5",
-      "iso_url": "http://mirror.rit.edu/centos/6.4/isos/x86_64/CentOS-6.4-x86_64-netinstall.iso",
+      "iso_url": "http://mirror.rit.edu/centos/6/isos/x86_64/CentOS-6.5-x86_64-netinstall.iso",
       "skip_compaction": true,
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
