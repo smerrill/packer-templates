@@ -9,9 +9,9 @@
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "guest_os_type": "RedHat_64",
       "http_directory": "http",
-      "iso_checksum": "939fd1d87c11ffe7795324438b85adfb",
+      "iso_checksum": "2342bc5ea72fc028972aa0f21cee28b4",
       "iso_checksum_type": "md5",
-      "iso_url": "http://mirror.rit.edu/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-netinstall.iso",
+      "iso_url": "http://mirror.rit.edu/centos/6.6/isos/x86_64/CentOS-6.6-x86_64-netinstall.iso",
       "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -42,9 +42,9 @@
       "disk_size": 20480,
       "guest_os_type": "rhel6-64",
       "http_directory": "http",
-      "iso_checksum": "939fd1d87c11ffe7795324438b85adfb",
+      "iso_checksum": "2342bc5ea72fc028972aa0f21cee28b4",
       "iso_checksum_type": "md5",
-      "iso_url": "http://mirror.rit.edu/centos/6.5/isos/x86_64/CentOS-6.5-x86_64-netinstall.iso",
+      "iso_url": "http://mirror.rit.edu/centos/6.6/isos/x86_64/CentOS-6.6-x86_64-netinstall.iso",
       "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
       "skip_compaction": true,
       "ssh_password": "vagrant",
@@ -58,6 +58,29 @@
         "memsize": "480",
         "numvcpus": "1"
       }
+    },
+    {
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "type": "qemu",
+      "iso_checksum": "2342bc5ea72fc028972aa0f21cee28b4",
+      "iso_checksum_type": "md5",
+      "iso_url": "http://mirror.rit.edu/centos/6.6/isos/x86_64/CentOS-6.6-x86_64-netinstall.iso",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "disk_size": 20480,
+      "format": "qcow2",
+      "headless": false,
+      "accelerator": "kvm",
+      "http_directory": "http",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "vm_name": "centos66",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio"
     }
   ],
   "post-processors": [
@@ -66,6 +89,9 @@
   "provisioners": [
     {
       "override": {
+        "qemu": {
+          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
+        },
         "virtualbox-iso": {
           "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
         },
