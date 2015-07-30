@@ -6,7 +6,7 @@ if [[ ! -f /home/vagrant/linux.iso ]]; then
   exit 0
 fi
 
-# Install the VMWare Tools from a linux ISO.
+yum -y install gcc make dkms kernel-devel kernel-headers kernel-firmware
 
 mkdir -p /mnt/vmware
 mount -o loop /home/vagrant/linux.iso /mnt/vmware
