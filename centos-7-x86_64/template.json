@@ -1,4 +1,12 @@
 {
+  "push": {
+    "name": "",
+    "vcs": true
+  },
+  "variables": {
+    "atlas_username": "{{env `ATLAS_USERNAME`}}",
+    "atlas_name": "{{env `ATLAS_NAME`}}"
+  },
   "provisioners": [
     {
       "type": "shell",
@@ -111,6 +119,39 @@
     }
   ],
   "post-processors": [
-    "vagrant"
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false
+    },
+    {
+      "type": "atlas",
+      "only": ["qemu"],
+      "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+      "artifact_type": "vagrant.box",
+      "metadata": {
+        "provider": "libvirt",
+        "version": "0.0.1"
+      }
+    },
+    {
+      "type": "atlas",
+      "only": ["vmware-iso"],
+      "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+      "artifact_type": "vagrant.box",
+      "metadata": {
+        "provider": "vmware_desktop",
+        "version": "0.0.1"
+      }
+    },
+    {
+      "type": "atlas",
+      "only": ["virtualbox-iso"],
+      "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+      "artifact_type": "vagrant.box",
+      "metadata": {
+        "provider": "virtualbox",
+        "version": "0.0.1"
+      }
+    }
   ]
 }
