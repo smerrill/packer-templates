@@ -17,7 +17,3 @@ sh /mnt/virtualbox/VBoxLinuxAdditions.run
 umount /mnt/virtualbox
 rmdir /mnt/virtualbox
 rm -rf /home/vagrant/*.iso
-
-# Save a few hundred megs of downloads for casual use?
-# TRANSACTION=$(yum history list | head -n4 | tail -n1 | awk '{ print $1 }')
-# yum history undo $TRANSACTION
