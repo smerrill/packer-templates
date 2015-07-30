@@ -1,5 +1,8 @@
+#!/bin/bash -x
+
 # Bail if we are not running inside VMWare.
-[ `facter virtual` == "vmware" ] || {
+[[ $(facter virtual) == "vmware" ]] || {
+  echo "Not building VMware Tools."
   exit 0
 }
 
