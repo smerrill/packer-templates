@@ -15,19 +15,27 @@
         },
         "vmware-iso": {
           "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
+        },
+        "qemu": {
+          "execute_command": "echo 'vagrant'|sudo -S sh '{{.Path}}'"
         }
       }
     }
   ],
   "builders": [
     {
-      "type": "virtualbox-iso",
+      "type": "qemu",
+
+      "format": "qcow2",
+      "accelerator": "kvm",
+      "net_device": "virtio-net",
+      "disk_interface": "virtio",
+
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
       "boot_wait": "10s",
       "disk_size": 20480,
-      "guest_os_type": "RedHat_64",
       "http_directory": "http",
       "iso_checksum": "111379a06402e1e445c6aeee9401d031",
       "iso_checksum_type": "md5",
@@ -36,7 +44,12 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'"
+    },
+    {
+      "type": "virtualbox-iso",
+
+      "guest_os_type": "RedHat_64",
       "guest_additions_path": "VBoxGuestAdditions_{{.Version}}.iso",
       "virtualbox_version_file": ".vbox_version",
       "vboxmanage": [
@@ -52,32 +65,49 @@
           "--cpus",
           "1"
         ]
-      ]
-    },
-    {
-      "type": "vmware-iso",
+      ],
+
       "boot_command": [
         "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
       ],
       "boot_wait": "10s",
       "disk_size": 20480,
-      "guest_os_type": "rhel7-64",
       "http_directory": "http",
       "iso_checksum": "111379a06402e1e445c6aeee9401d031",
       "iso_checksum_type": "md5",
       "iso_url": "http://mirror.cc.columbia.edu/pub/linux/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1503.iso",
-      "skip_compaction": true,
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'"
+    },
+    {
+      "type": "vmware-iso",
+
+      "guest_os_type": "rhel7-64",
       "tools_upload_flavor": "linux",
       "vmx_data": {
         "memsize": "480",
         "numvcpus": "1",
         "cpuid.coresPerSocket": "1"
-      }
+      },
+      "skip_compaction": true,
+
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": 20480,
+      "http_directory": "http",
+      "iso_checksum": "111379a06402e1e445c6aeee9401d031",
+      "iso_checksum_type": "md5",
+      "iso_url": "http://mirror.cc.columbia.edu/pub/linux/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1503.iso",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'"
     }
   ],
   "post-processors": [
