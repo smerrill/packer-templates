@@ -1,5 +1,10 @@
 #!/bin/bash -x
 
+# Do not do this for qcow2 images lest they totally preallocate.
+if [ $PACKER_BUILDER_TYPE == "qemu" ]; then
+  exit 0
+fi
+
 swapuuid="`/sbin/blkid -o value -l -s UUID -t TYPE=swap`";
 
 if [ "x${swapuuid}" != "x" ]; then
