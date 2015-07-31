@@ -1,6 +1,6 @@
 #!/bin/bash -x
 
-if [ $PACKER_BUILDER_TYPE == "virtualbox-iso" ]; then
+if [[ $PACKER_BUILDER_TYPE == "virtualbox-iso" ]]; then
   VERSION=$(cat /home/vagrant/.vbox_version)
   ISO="/home/vagrant/VBoxGuestAdditions_${VERSION}.iso"
 
@@ -14,7 +14,7 @@ if [ $PACKER_BUILDER_TYPE == "virtualbox-iso" ]; then
   rm -rf /home/vagrant/*.iso
 fi
 
-if [ $PACKER_BUILDER_TYPE == "vmware-iso" ]; then
+if [[ $PACKER_BUILDER_TYPE == "vmware-iso" ]]; then
   yum -y install gcc make dkms kernel-devel kernel-headers kernel-firmware
 
   mkdir -p /mnt/vmware

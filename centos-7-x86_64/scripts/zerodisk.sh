@@ -1,7 +1,7 @@
 #!/bin/bash -x
 
 # Do not do this for qcow2 images lest they totally preallocate.
-if [ $PACKER_BUILDER_TYPE == "qemu" ]; then
+if [[ $PACKER_BUILDER_TYPE == "qemu" ]]; then
   exit 0
 fi
 
