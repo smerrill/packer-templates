@@ -6,7 +6,7 @@
   "provisioners": [
     {
       "type": "shell",
-      "execute_command": "echo 'vagrant'| {{.Vars}} sudo -S sh '{{.Path}}'",
+      "execute_command": "echo 'vagrant'| {{.Vars}} sudo -S -E sh '{{.Path}}'",
       "scripts": [
         "scripts/vmtools.sh",
         "scripts/vagrant.sh",
@@ -37,7 +37,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'"
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p"
     },
     {
       "type": "virtualbox-iso",
@@ -73,7 +73,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'"
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p"
     },
     {
       "type": "vmware-iso",
@@ -100,7 +100,7 @@
       "ssh_password": "vagrant",
       "ssh_port": 22,
       "ssh_wait_timeout": "10000s",
-      "shutdown_command": "echo '/sbin/halt -h -p' > shutdown.sh; echo 'vagrant'|sudo -S sh 'shutdown.sh'"
+      "shutdown_command": "echo 'vagrant' | sudo -S /sbin/halt -h -p"
     }
   ],
   "post-processors": [[
