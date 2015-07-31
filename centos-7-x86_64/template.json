@@ -4,8 +4,7 @@
     "vcs": true
   },
   "variables": {
-    "atlas_username": "{{env `ATLAS_USERNAME`}}",
-    "atlas_name": "{{env `ATLAS_NAME`}}"
+    "atlas_token": "{{env `ATLAS_TOKEN`}}"
   },
   "provisioners": [
     {
@@ -126,7 +125,7 @@
     {
       "type": "atlas",
       "only": ["qemu"],
-      "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+      "artifact": "phase2/centos-7",
       "artifact_type": "vagrant.box",
       "metadata": {
         "provider": "libvirt",
@@ -136,7 +135,7 @@
     {
       "type": "atlas",
       "only": ["vmware-iso"],
-      "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+      "artifact": "phase2/centos-7",
       "artifact_type": "vagrant.box",
       "metadata": {
         "provider": "vmware_desktop",
@@ -146,7 +145,7 @@
     {
       "type": "atlas",
       "only": ["virtualbox-iso"],
-      "artifact": "{{user `atlas_username`}}/{{user `atlas_name`}}",
+      "artifact": "phase2/centos-7",
       "artifact_type": "vagrant.box",
       "metadata": {
         "provider": "virtualbox",
