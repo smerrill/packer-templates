@@ -1,10 +1,7 @@
 {
   "push": {
-    "name": "",
+    "name": "phase2/centos-7",
     "vcs": true
-  },
-  "variables": {
-    "atlas_token": "{{env `ATLAS_TOKEN`}}"
   },
   "provisioners": [
     {
