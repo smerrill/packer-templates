@@ -6,7 +6,7 @@
   "variables": {
     "iso_url": "http://mirror.cc.columbia.edu/pub/linux/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1511.iso",
     "iso_checksum": "99d305fa40ec9e28ef8450c3bcc45f85",
-    "version": "0.0.7"
+    "version": "0.0.8"
   },
   "provisioners": [
     {
