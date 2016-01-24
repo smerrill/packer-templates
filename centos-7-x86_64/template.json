@@ -3,6 +3,11 @@
     "name": "phase2/centos-7",
     "vcs": true
   },
+  "variables": {
+    "iso_url": "http://mirror.cc.columbia.edu/pub/linux/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1511.iso",
+    "iso_checksum": "99d305fa40ec9e28ef8450c3bcc45f85",
+    "version": "0.0.7"
+  },
   "provisioners": [
     {
       "type": "shell",
@@ -30,9 +35,9 @@
       "boot_wait": "10s",
       "disk_size": 20480,
       "http_directory": "http",
-      "iso_checksum": "99d305fa40ec9e28ef8450c3bcc45f85",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "md5",
-      "iso_url": "http://mirror.cc.columbia.edu/pub/linux/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1511.iso",
+      "iso_url": "{{user `iso_url` }}",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -66,9 +71,9 @@
       "boot_wait": "10s",
       "disk_size": 20480,
       "http_directory": "http",
-      "iso_checksum": "99d305fa40ec9e28ef8450c3bcc45f85",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "md5",
-      "iso_url": "http://mirror.cc.columbia.edu/pub/linux/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1511.iso",
+      "iso_url": "{{user `iso_url` }}",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -93,9 +98,9 @@
       "boot_wait": "10s",
       "disk_size": 20480,
       "http_directory": "http",
-      "iso_checksum": "99d305fa40ec9e28ef8450c3bcc45f85",
+      "iso_checksum": "{{user `iso_checksum`}}",
       "iso_checksum_type": "md5",
-      "iso_url": "http://mirror.cc.columbia.edu/pub/linux/centos/7/isos/x86_64/CentOS-7-x86_64-NetInstall-1511.iso",
+      "iso_url": "{{user `iso_url` }}",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
@@ -115,7 +120,7 @@
       "artifact_type": "vagrant.box",
       "metadata": {
         "provider": "libvirt",
-        "version": "0.0.6"
+        "version": "{{user `version`}}"
       }
     },
     {
@@ -125,7 +130,7 @@
       "artifact_type": "vagrant.box",
       "metadata": {
         "provider": "vmware_desktop",
-        "version": "0.0.6"
+        "version": "{{user `version`}}"
       }
     },
     {
@@ -135,7 +140,7 @@
       "artifact_type": "vagrant.box",
       "metadata": {
         "provider": "virtualbox",
-        "version": "0.0.6"
+        "version": "{{user `version`}}"
       }
     }
   ]]
